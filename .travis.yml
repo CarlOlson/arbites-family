@@ -1,11 +1,13 @@
 language: csharp
 solution: ArbitesEto2/ArbitesEto2.sln
+before_install:
+  - if test "$TRAVIS_OS_NAME" == "osx"; then brew update; brew cask install mono-mdk; fi
 install:
   - nuget restore ArbitesEto2/ArbitesEto2.sln
   - nuget install xunit.runner.console -Version 2.2.0 -OutputDirectory testrunner
 script:
-  - msbuild /p:Configuration="$CONFIG" ArbitesEto2/ArbitesEto2.sln
-  - mono testrunner/xunit.runner.console.2.2.0/tools/xunit.console.exe ArbitesEto2/ArbitesEto2.Tests/bin/"$CONFIG"/net461/ArbitesEto2.Tests.dll
+  - msbuild /p:Configuration=$CONFIG ArbitesEto2/ArbitesEto2.sln
+  - mono testrunner/xunit.runner.console.2.2.0/tools/xunit.console.exe ArbitesEto2/ArbitesEto2.Tests/bin/$CONFIG/net461/ArbitesEto2.Tests.dll
 matrix:
   include:
     - os: linux
