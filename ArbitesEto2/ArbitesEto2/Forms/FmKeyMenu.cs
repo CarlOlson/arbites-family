@@ -80,7 +80,12 @@ namespace ArbitesEto2
         {
             var groups = new DropDown();
 
-            groups.Items.Add("All");
+            // OSX app will freeze when rendering the full list
+            if (!Platform.IsMac)
+            {
+                groups.Items.Add("All");
+            }
+
             foreach (var groupName in MdSessionData.CurrentInputMethod.Groups)
             {
                 groups.Items.Add(groupName);
@@ -127,7 +132,7 @@ namespace ArbitesEto2
             {
                 var query = search.Text.ToLower();
                 var keys = GetKeys()
-                    .Where((key) => key.DisplayText.ToLower().Contains(query));
+                    .Where((key) => key.Text.ToLower().Contains(query));
                 UpdateListBox(keys);
             }
         }
@@ -140,11 +145,8 @@ namespace ArbitesEto2
 
         private void UpdateListBox(IEnumerable<DisplayCharacterContainer.Key> keys)
         {
-            ListBox.DataStore = null;
-            foreach (var key in keys)
-            {
-                ListBox.Items.Add(key.DisplayText, key.Index.ToString());
-            }
+            ListBox.Items.Clear();
+            ListBox.Items.AddRange(keys);
         }
 
         public void ReloadInputMethod()

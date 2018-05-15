@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Eto.Forms;
 
 namespace ArbitesEto2
 {
     [XmlType("ClDisplayCharacterContainer")]
     public class DisplayCharacterContainer
     {
-        public class Key
+        public class Key : IListItem
         {
-            public string DisplayText { get; set; }
+            public string Text { get; set; }
             public int Index { get; set; }
             public int GroupIndex { get; set; }
+
+            string IListItem.Key => Index.ToString();
         }
 
         public string Name { get; set; }
@@ -84,7 +87,7 @@ namespace ArbitesEto2
                 if (this.Index[i] == key)
                 {
                     this.Display[i] = value;
-                    this.Keys[i].DisplayText = value;
+                    this.Keys[i].Text = value;
                     keyIsNew = false;
                 }
             }
@@ -97,7 +100,7 @@ namespace ArbitesEto2
 
                 this.Keys.Add(new Key
                 {
-                    DisplayText = value,
+                    Text = value,
                     Index = key,
                     GroupIndex = groupIndex
                 });

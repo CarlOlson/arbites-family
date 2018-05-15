@@ -4,11 +4,6 @@
         <TargetFramework>net461</TargetFramework>
         <DebugType>Full</DebugType>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
-      <IntermediateOutputPath>obj\Release\net461</IntermediateOutputPath>
-      <Optimize>true</Optimize>
-      <DefineConstants>TRACE;RELEASE;NET461</DefineConstants>
-    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="IntelHexFormatReader" Version="2.2.3" />
         <PackageReference Include="SerialPortStream" Version="2.1.3" />
