@@ -4,6 +4,11 @@
         <TargetFramework>net461</TargetFramework>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
+      <IntermediateOutputPath>obj\Release\net461</IntermediateOutputPath>
+      <Optimize>true</Optimize>
+      <DefineConstants>TRACE;RELEASE;NET461</DefineConstants>
+    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="xunit" Version="2.2.0" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />

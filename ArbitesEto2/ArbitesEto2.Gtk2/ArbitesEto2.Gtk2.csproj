@@ -9,6 +9,11 @@
         <StartAction>Project</StartAction>
         <ExternalConsole>false</ExternalConsole>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
+      <IntermediateOutputPath>obj\Release\net461</IntermediateOutputPath>
+      <Optimize>true</Optimize>
+      <DefineConstants>TRACE;RELEASE;NET461</DefineConstants>
+    </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\ArbitesEto2\ArbitesEto2.csproj" />
     </ItemGroup>
